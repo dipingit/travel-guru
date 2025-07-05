@@ -1,76 +1,73 @@
+import { useState } from 'react';
 import cox from '../../assets/images/cox.png';
-import sree from '../../assets/images/Sreemongol.png';
-import sundarban from '../../assets/images/sundorbon.png';
-
+import destinations from '../../data/destination';
 const Home = () => {
-     
+    const [origin, setOrigin] = useState('');
+    const [destination, setDestination] = useState('');
     return (
-        <div className="relative min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${cox})` }}>
-            {/* Dark overlay for entire hero */}
-            <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+        <div className="min-h-screen bg-black bg-opacity-80 flex justify-center items-center px-4 py-10">
+            <div className="grid md:grid-cols-2 gap-10 max-w-6xl w-full">
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center h-full px-8 py-16 text-white">
-
-                {/* Left: Text Content */}
-                <div className="max-w-lg mb-10 lg:mb-0">
-                    <h1 className="text-5xl font-bold mb-4">Cox’s Bazar</h1>
-                    <p className="mb-6">
+                {/* Left Side: Destination Details */}
+                <div className="text-white space-y-6">
+                    <h1 className="text-5xl font-bold">Cox’s Bazar</h1>
+                    <p className="text-lg leading-relaxed">
                         Cox’s Bazar is a city, fishing port, tourism centre and district
-                        headquarters in southeastern Bangladesh. It is famous mostly for
-                        its long natural sandy beach.
+                        headquarters in southeastern Bangladesh. It is famous mostly for its
+                        long natural sandy beach.
                     </p>
-                    <div className="flex gap-4 items-center">
-                        <button className="btn btn-warning">Booking</button>
-                     
-                    </div>
                 </div>
 
-                {/* Right: Destination Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8">
-                    {/* Card 1 */}
-                    <div className="relative w-60 h-80 rounded-lg overflow-hidden shadow-lg">
-                        <img
-                            src={cox}
-                            alt="Cox's Bazar"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10 flex items-end p-4">
-                            <h2 className="text-lg font-semibold">Cox's Bazar</h2>
+                {/* Right Side: Booking Form */}
+                <form  className="bg-white rounded-lg shadow-md p-8 w-4/5 space-y-4">
+                    <div>
+                        <label className="label w-full">
+                            <span className="label-text font-semibold">Origin</span>
+                        </label>
+                        <select name='origin' required className="select select-bordered" value={origin} onChange={(e) => setOrigin(e.target.value)}>
+                        <option disabled value="" >Select Origin</option>
+                        {
+                            destinations.filter(dest => dest.name !== destination)
+                            .map(dest => (<option key={dest.id} value={dest.name}>{dest.name}</option>) )
+                        }
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="label">
+                            <span className="label-text font-semibold">Destination</span>
+                        </label>
+                        <select name='destination' required className="select select-bordered" value={destination} onChange={(e) => setDestination(e.target.value)}>
+                            <option disabled value=''>Select Destination</option>
+                                {
+                                    destinations.filter(dest => dest.name !== origin)
+                                    .map(dest => (<option key={dest.id} value={dest.name}>{dest.name}</option>))
+                                }
+                            
+                        </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="label">
+                                <span className="label-text font-semibold">From</span>
+                            </label>
+                            <input name='date_from' required type="date" className="input input-bordered w-full" />
+                        </div>
+
+                        <div>
+                            <label className="label">
+                                <span className="label-text font-semibold">To</span>
+                            </label>
+                            <input name='date_to' required type="date" className="input input-bordered w-full" />
                         </div>
                     </div>
 
-                    {/* Card 2 */}
-                    <div className="relative w-60 h-80 rounded-lg overflow-hidden shadow-lg">
-                        <img
-                            src={sree}
-                            alt="Sreemangal"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10 flex items-end p-4">
-                            <h2 className="text-lg font-semibold">Sreemangal</h2>
-                        </div>
-                    </div>
-
-                    {/* Card 3 */}
-                    <div className="relative w-60 h-80 rounded-lg overflow-hidden shadow-lg">
-                        <img
-                            src={sundarban}
-                            alt="Sundarbans"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10 flex items-end p-4">
-                            <h2 className="text-lg font-semibold">Sundarbans</h2>
-                        </div>
-                      
-                    </div>
-                    <div className="space-x-2 mt-7">
-                        <button className="btn btn-sm btn-outline border-white text-white hover:bg-white hover:text-black">Previous</button>
-                        <button className="btn btn-sm btn-outline border-white text-white hover:bg-white hover:text-black">Next</button>
-                    </div>
-                </div>
+                    <button className="btn btn-warning w-full mt-4">Start Booking</button>
+                </form>
             </div>
         </div>
+
     );
 };
 
