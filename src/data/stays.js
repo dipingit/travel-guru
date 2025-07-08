@@ -1,3 +1,7 @@
+import hotel_1 from '../assets/images/hotel-1.png';
+import hotel_2 from '../assets/images/hotel-2.png';
+import resort from '../assets/images/resort.png'
+
 const stays = [
     // Cox's Bazar
     {
@@ -10,7 +14,7 @@ const stays = [
       maximum_guest: 80,
       pricePerNight: 90,
       rating: 4.6,
-      image: "https://via.placeholder.com/400x250?text=Ocean+View+Hotel",
+      image: hotel_1,
     },
     {
       id: 2,
@@ -22,7 +26,7 @@ const stays = [
       maximum_guest: 60,
       pricePerNight: 75,
       rating: 4.2,
-      image: "https://via.placeholder.com/400x250?text=Beachside+Resort",
+      image: resort
     },
   
     // Sreemangal
@@ -36,7 +40,7 @@ const stays = [
       maximum_guest: 40,
       pricePerNight: 60,
       rating: 4.4,
-      image: "https://via.placeholder.com/400x250?text=Tea+Garden+Inn",
+      image: hotel_1,
     },
     {
       id: 4,
@@ -48,7 +52,7 @@ const stays = [
       maximum_guest: 30,
       pricePerNight: 55,
       rating: 4.1,
-      image: "https://via.placeholder.com/400x250?text=Green+Leaf+Lodge",
+      image: hotel_2,
     },
   
     // Sundarbans
@@ -62,7 +66,7 @@ const stays = [
       maximum_guest: 20,
       pricePerNight: 85,
       rating: 4.8,
-      image: "https://via.placeholder.com/400x250?text=Jungle+Retreat",
+      image: hotel_2,
     },
     {
       id: 6,
@@ -74,7 +78,7 @@ const stays = [
       maximum_guest: 24,
       pricePerNight: 70,
       rating: 4.3,
-      image: "https://via.placeholder.com/400x250?text=Mangrove+Eco+Resort",
+      image: resort,
     },
   ];
   

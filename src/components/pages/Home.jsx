@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import cox from '../../assets/images/cox.png';
 import destinations from '../../data/destination';
+import Booking from '../pages/Booking';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate('/booking', {state: {destination: destination}});
+    }
     return (
         <div className="min-h-screen bg-black bg-opacity-80 flex justify-center items-center px-4 py-10">
             <div className="grid md:grid-cols-2 gap-10 max-w-6xl w-full">
@@ -19,7 +28,7 @@ const Home = () => {
                 </div>
 
                 {/* Right Side: Booking Form */}
-                <form  className="bg-white rounded-lg shadow-md p-8 w-4/5 space-y-4">
+                <form onSubmit={handleSubmit}  className="bg-white rounded-lg shadow-md p-8 w-4/5 space-y-4">
                     <div>
                         <label className="label w-full">
                             <span className="label-text font-semibold">Origin</span>
