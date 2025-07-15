@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./provider/AuthProvider";
 
 const Navbar = () => {
+    const {user} = useContext(AuthContext);
     const location = useLocation();
     const isBookingPage = location.pathname === '/booking';
     const isAuthPage = location.pathname.startsWith('/auth');
@@ -16,9 +19,12 @@ const Navbar = () => {
                     <li><a>Blog</a></li>
                     <li><a>Contact</a></li>
                 </ul>
-                <Link to='/auth/login' className="btn btn-warning btn-sm cursor-pointer z-50">
-                    Login
-                </Link>
+                {
+                    user && user?.email ? user.email : (<Link to='/auth/login' className="btn btn-warning btn-sm cursor-pointer z-50">
+                        Login
+                    </Link>)
+                }
+                
             </div>
         </div>
       
