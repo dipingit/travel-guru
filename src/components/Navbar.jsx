@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./provider/AuthProvider";
 
 const Navbar = () => {
-    const {user} = useContext(AuthContext);
+    const {user, logOut} = useContext(AuthContext);
     const location = useLocation();
     const isBookingPage = location.pathname === '/booking';
     const isAuthPage = location.pathname.startsWith('/auth');
@@ -20,11 +20,22 @@ const Navbar = () => {
                     <li><a>Contact</a></li>
                 </ul>
                 {
-                    user && user?.email ? user.email : (<Link to='/auth/login' className="btn btn-warning btn-sm cursor-pointer z-50">
+                    user && user?.email ? 
+                    <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-sm btn-outline">
+                            {user.email}
+                        </label>
+                        <ul tabIndex={0} className="dropdown-content mt-2 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <button onClick={logOut} className="btn btn-neutral btn-sm">Logout</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    : (<Link to='/auth/login' className="btn btn-warning btn-sm cursor-pointer z-50">
                         Login
                     </Link>)
                 }
-                
             </div>
         </div>
       
