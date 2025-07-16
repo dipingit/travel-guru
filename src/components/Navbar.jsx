@@ -23,9 +23,9 @@ const Navbar = () => {
                     user && user?.email ? 
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-sm btn-outline">
-                            {user.email}
+                                {user.displayName}
                         </label>
-                        <ul tabIndex={0} className="dropdown-content mt-2 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="dropdown-content mt-2 z-[1] menu p-2 shadow bg-base-100 rounded-box">
                             <li>
                                 <button onClick={logOut} className="btn btn-neutral btn-sm">Logout</button>
                             </li>

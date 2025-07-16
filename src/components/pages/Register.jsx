@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
     const {createNewUser, setUser} = useContext(AuthContext);
@@ -24,8 +25,15 @@ const Register = () => {
                 // Signed up 
                 const user = userCred.user;
                 setUser(user);
-                navigate('/');
-                console.log(user);
+                updateProfile(user, {
+                    displayName: name
+                }).then(() => {
+                    console.log("Display name updated successfully");
+                    console.log(user.displayName); // You can now use this
+                    navigate('/');
+                }).catch((error) => {
+                    console.error("Failed to update display name", error);
+                });
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
